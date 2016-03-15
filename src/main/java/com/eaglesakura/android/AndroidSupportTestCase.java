@@ -17,6 +17,7 @@ import android.content.Context;
 import java.io.File;
 
 @RunWith(RobolectricGradleTestRunner.class)
+// @Config(constants = BuildConfig.class, packageName = BuildConfig.APPLICATION_ID, sdk = 21)
 public class AndroidSupportTestCase<AppClass extends Application> {
 
     /**
