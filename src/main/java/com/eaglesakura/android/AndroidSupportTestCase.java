@@ -27,30 +27,19 @@ public class AndroidSupportTestCase<AppClass extends Application> {
 
     private void initializeLogger() {
         ShadowLog.stream = System.out;
-        LogUtil.setOutput(true);
-        LogUtil.setLogger(new LogUtil.Logger() {
-            @Override
-            public void i(String msg) {
-                try {
-                    StackTraceElement[] trace = new Exception().getStackTrace();
-                    StackTraceElement elem = trace[Math.min(trace.length - 1, 3)];
-                    System.out.println("I " + String.format("%s[%d] : %s", elem.getFileName(), elem.getLineNumber(), msg));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void d(String msg) {
-                try {
-                    StackTraceElement[] trace = new Exception().getStackTrace();
-                    StackTraceElement elem = trace[Math.min(trace.length - 1, 3)];
-                    System.out.println("D " + String.format("%s[%d] : %s", elem.getFileName(), elem.getLineNumber(), msg));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        LogUtil.setLogger(
+                new LogUtil.Logger() {
+                    @Override
+                    public void out(int level, String tag, String msg) {
+                        try {
+                            StackTraceElement[] trace = new Exception().getStackTrace();
+                            StackTraceElement elem = trace[Math.min(trace.length - 1, 3)];
+                            System.out.println(String.format("%s[%d] : %s", elem.getFileName(), elem.getLineNumber(), msg));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public Context getContext() {
@@ -75,7 +64,7 @@ public class AndroidSupportTestCase<AppClass extends Application> {
     /**
      * /src/test/assets配下のリソースを取得する
      */
-    protected File getTestAsset(String path) {
+    public File getTestAsset(String path) {
         return new File("src/test/assets/" + path).getAbsoluteFile();
     }
 
