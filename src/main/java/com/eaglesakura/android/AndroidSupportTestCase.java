@@ -20,6 +20,8 @@ import java.io.File;
 // @Config(constants = BuildConfig.class, packageName = BuildConfig.APPLICATION_ID, sdk = 21)
 public class AndroidSupportTestCase<AppClass extends Application> {
 
+    protected final String LOG_TAG = getClass().getSimpleName();
+
     /**
      * app context
      */
