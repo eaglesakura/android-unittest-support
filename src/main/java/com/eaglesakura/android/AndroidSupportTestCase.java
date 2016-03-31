@@ -20,6 +20,8 @@ import java.io.File;
 // @Config(constants = BuildConfig.class, packageName = BuildConfig.APPLICATION_ID, sdk = 21)
 public class AndroidSupportTestCase<AppClass extends Application> {
 
+    protected final String LOG_TAG = getClass().getSimpleName();
+
     /**
      * app context
      */
@@ -31,10 +33,23 @@ public class AndroidSupportTestCase<AppClass extends Application> {
                 new LogUtil.Logger() {
                     @Override
                     public void out(int level, String tag, String msg) {
+
+                        switch (level) {
+                            case LogUtil.LOGGER_LEVEL_INFO:
+                                tag = "I/" + tag;
+                                break;
+                            case LogUtil.LOGGER_LEVEL_ERROR:
+                                tag = "E/" + tag;
+                                break;
+                            default:
+                                tag = "D/" + tag;
+                                break;
+                        }
+
                         try {
                             StackTraceElement[] trace = new Exception().getStackTrace();
-                            StackTraceElement elem = trace[Math.min(trace.length - 1, 3)];
-                            System.out.println(String.format("%s[%d] : %s", elem.getFileName(), elem.getLineNumber(), msg));
+                            StackTraceElement elem = trace[Math.min(trace.length - 1, 2)];
+                            System.out.println(String.format("%s | %s[%d] : %s", tag, elem.getFileName(), elem.getLineNumber(), msg));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
