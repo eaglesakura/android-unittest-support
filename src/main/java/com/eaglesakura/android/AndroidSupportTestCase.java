@@ -1,5 +1,6 @@
 package com.eaglesakura.android;
 
+import com.eaglesakura.android.logger.SupportLogger;
 import com.eaglesakura.util.LogUtil;
 
 import org.junit.After;
@@ -29,32 +30,7 @@ public class AndroidSupportTestCase<AppClass extends Application> {
 
     private void initializeLogger() {
         ShadowLog.stream = System.out;
-        LogUtil.setLogger(
-                new LogUtil.Logger() {
-                    @Override
-                    public void out(int level, String tag, String msg) {
-
-                        switch (level) {
-                            case LogUtil.LOGGER_LEVEL_INFO:
-                                tag = "I/" + tag;
-                                break;
-                            case LogUtil.LOGGER_LEVEL_ERROR:
-                                tag = "E/" + tag;
-                                break;
-                            default:
-                                tag = "D/" + tag;
-                                break;
-                        }
-
-                        try {
-                            StackTraceElement[] trace = new Exception().getStackTrace();
-                            StackTraceElement elem = trace[Math.min(trace.length - 1, 2)];
-                            System.out.println(String.format("%s | %s[%d] : %s", tag, elem.getFileName(), elem.getLineNumber(), msg));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+        LogUtil.setLogger(new SupportLogger.Robolectric());
     }
 
     public Context getContext() {
