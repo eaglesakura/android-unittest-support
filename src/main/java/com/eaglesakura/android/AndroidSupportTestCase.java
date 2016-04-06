@@ -1,6 +1,5 @@
 package com.eaglesakura.android;
 
-import com.eaglesakura.android.logger.SupportLogger;
 import com.eaglesakura.util.LogUtil;
 
 import org.junit.After;
@@ -30,7 +29,7 @@ public class AndroidSupportTestCase<AppClass extends Application> {
 
     private void initializeLogger() {
         ShadowLog.stream = System.out;
-        LogUtil.setLogger(new SupportLogger.Robolectric());
+        LogUtil.setLogger(new LogUtil.RobolectricLogger());
     }
 
     public Context getContext() {
