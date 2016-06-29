@@ -1,7 +1,8 @@
 /**
  * 1.0.0   : release
+ * 1.1.x   : robolectric 3.1対応
  */
-def ARTIFACT_VERSION = "1.0"
+def ARTIFACT_VERSION = "1.1"
 def ARTIFACT_NAME = file(".").absoluteFile.name
 def ARTIFACT_INSTALL_TARGET = getArtifactInstallTarget()
 
@@ -22,8 +23,8 @@ repositories {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -31,7 +32,7 @@ android {
     }
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 23
+        targetSdkVersion 24
     }
     lintOptions {
         abortOnError false
@@ -48,7 +49,7 @@ dependencies {
      * Unit Testing
      */
     compile 'junit:junit:4.12'
-    compile "org.robolectric:robolectric:3.0"
+    compile "org.robolectric:robolectric:3.1"
 
     if (EGLIBRARY_COMPILE_LOCAL) {
         compile project(':eglibrary:simple-logger')
