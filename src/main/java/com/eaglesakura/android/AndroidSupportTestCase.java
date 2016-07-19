@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 
 import org.hamcrest.core.Is;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowLog;
 
@@ -16,7 +17,7 @@ import android.content.Context;
 
 import java.io.File;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 // @Config(constants = BuildConfig.class, packageName = BuildConfig.APPLICATION_ID, sdk = 21)
 public class AndroidSupportTestCase<AppClass extends Application> {
 
