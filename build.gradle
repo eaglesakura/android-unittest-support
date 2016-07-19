@@ -1,8 +1,9 @@
 /**
  * 1.0.0   : release
  * 1.1.x   : robolectric 3.1対応
+ * 1.2.x   : robolectric 3.1.1対応
  */
-def ARTIFACT_VERSION = "1.1"
+def ARTIFACT_VERSION = "1.2"
 def ARTIFACT_NAME = file(".").absoluteFile.name
 def ARTIFACT_INSTALL_TARGET = getArtifactInstallTarget()
 
