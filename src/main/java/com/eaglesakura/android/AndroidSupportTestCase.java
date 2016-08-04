@@ -1,5 +1,6 @@
 package com.eaglesakura.android;
 
+import com.eaglesakura.junit.SupportAssertion;
 import com.eaglesakura.util.LogUtil;
 
 import org.junit.After;
@@ -17,7 +18,7 @@ import java.io.File;
 
 @RunWith(RobolectricTestRunner.class)
 // @Config(constants = BuildConfig.class, packageName = BuildConfig.APPLICATION_ID, sdk = 21)
-public class AndroidSupportTestCase<AppClass extends Application> {
+public class AndroidSupportTestCase<AppClass extends Application> extends SupportAssertion {
 
     protected final String LOG_TAG = getClass().getSimpleName();
 
