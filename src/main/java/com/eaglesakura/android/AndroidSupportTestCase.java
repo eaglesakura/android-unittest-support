@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
-import org.hamcrest.core.Is;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.shadows.ShadowLog;
@@ -59,7 +57,4 @@ public class AndroidSupportTestCase<AppClass extends Application> {
         return new File("src/test/assets/" + path).getAbsoluteFile();
     }
 
-    public static org.hamcrest.Matcher<Boolean> isTrue() {
-        return Is.is(true);
-    }
 }
