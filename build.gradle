@@ -42,7 +42,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 15
         targetSdkVersion 25
     }
     lintOptions {
