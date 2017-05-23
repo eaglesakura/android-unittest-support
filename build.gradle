@@ -5,8 +5,10 @@
  * 1.3.x   : TestCaseをSupportAssertionに対応
  * 1.4.x   : bintrayへ移行
  * 1.5.x   : AS3.0対応
+ * 1.6.x   : バージョン規則を変更
  */
-def ARTIFACT_VERSION = "1.5"
+def ARTIFACT_VERSION = System.env.CIRCLE_TAG == null ?
+        "1.6" : System.env.CIRCLE_TAG.substring(System.env.CIRCLE_TAG.indexOf('v') + 1)
 def REPOSITORY_NAME = "maven"
 def BINTRAY_LICENSES = ["MIT"]
 def BINTRAY_LABELS = ["android"]
@@ -71,10 +73,10 @@ dependencies {
         compile project(':eglibrary:junit-support')
         implementation project(':eglibrary:android-commons')
     } else {
-        compile "com.eaglesakura:simple-logger:2.0.463"
-        compile "com.eaglesakura:java-commons:2.0.2"
-        compile "com.eaglesakura:junit-support:1.1.63"
-        compile "com.eaglesakura:android-commons:2.2.11"
+        compile "com.eaglesakura:simple-logger:2.1.0"
+        compile "com.eaglesakura:java-commons:2.1.0"
+        compile "com.eaglesakura:junit-support:1.2.0"
+        compile "com.eaglesakura:android-commons:2.3.0"
     }
 }
 
@@ -128,9 +130,16 @@ android.libraryVariants.all { variant ->
  * CircleCIの場合、バージョン末尾にビルド番号を付与する
  */
 def getArtifactVersionSuffix() {
+    String CIRCLE_TAG = System.env.CIRCLE_TAG
+
+    if (CIRCLE_TAG != null) {
+        // TAGがある場合それを直接利用する
+        return ""
+    }
+
     if (System.env.CIRCLE_BUILD_NUM != null) {
         // CircleCIのバージョンが指定されているので、そちらを利用する
-        return ".${System.env.CIRCLE_BUILD_NUM}"
+        return ".build-${System.env.CIRCLE_BUILD_NUM}"
     } else {
         return ".snapshot"
     }
