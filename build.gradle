@@ -75,7 +75,7 @@ dependencies {
         api project(':eglibrary:junit-support')
     } else {
         compile "com.eaglesakura:simple-logger:2.1.0"
-        compile "com.eaglesakura:java-commons:2.1.0"
+        compile "com.eaglesakura:java-commons:2.2.0"
         compile "com.eaglesakura:junit-support:1.2.0"
         compile "com.eaglesakura:android-commons:2.3.0"
     }
