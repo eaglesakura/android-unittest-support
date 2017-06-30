@@ -55,30 +55,16 @@ android {
     }
 }
 
-// Local or maven
-if (!hasProperty("EGLIBRARY_COMPILE_LOCAL")) {
-    ext.EGLIBRARY_COMPILE_LOCAL = false
-}
-
 dependencies {
     /**
      * Unit Testing
      */
     compile 'junit:junit:4.12'
     compile "org.robolectric:robolectric:3.1.1"
-
-    if (EGLIBRARY_COMPILE_LOCAL) {
-        implementation project(':eglibrary:simple-logger')
-        implementation project(':eglibrary:java-commons')
-        implementation project(':eglibrary:android-commons')
-
-        api project(':eglibrary:junit-support')
-    } else {
-        compile "com.eaglesakura:simple-logger:2.1.0"
-        compile "com.eaglesakura:java-commons:2.2.0"
-        compile "com.eaglesakura:junit-support:1.2.0"
-        compile "com.eaglesakura:android-commons:2.3.0"
-    }
+    compile "com.eaglesakura:simple-logger:2.1.0"
+    compile "com.eaglesakura:java-commons:2.2.0"
+    compile "com.eaglesakura:junit-support:1.2.0"
+    compile "com.eaglesakura:android-commons:2.3.0"
 }
 
 task sourcesJar(type: Jar) {
